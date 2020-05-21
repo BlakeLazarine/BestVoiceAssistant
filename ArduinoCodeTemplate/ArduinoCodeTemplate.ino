@@ -1,5 +1,5 @@
 const int PWMPin = 9;
-int buffer [1024];
+int buffer [512];
 int bri = 225;
 int red = 2;
 int blue = 3;
@@ -8,17 +8,19 @@ void setup() {
   // put your setup code here, to run once:
   pinMode(PWMPin, OUTPUT);
   Serial.begin(115200);
+  Serial.write(0);
   ADCSRA = (ADCSRA & 0xf8) | 0x04;
 }
 
-void recordSample() {
+void recordSample(byte num) {
   // put your main code here, to run repeatedly:
-  analogWrite(PWMPin, bri);
-  for (int i = 0; i < 1024; i++) {
-    buffer[i] = analogRead(A0);
-  }
-  for (int i = 0; i < 1024; i++) {
-    Serial.write(buffer[i]);
+  for (byte j = 0; j < num; j++) {
+    for (int i = 0; i < 512; i++) {
+      buffer[i] = analogRead(A0);
+    }
+    for (int i = 0; i < 512; i++) {
+      Serial.write(buffer[i]);
+    }
   }
 }
 
@@ -39,18 +41,19 @@ void writeThing() {
 }
 void loop() {
   int in = Serial.parseInt();
+  if(in / 10 == 1){
+    recordSample(in%10);
+    return;
+    }
   switch (in) {
     case 1:
-      recordSample();
+      writeThing();
       break;
     case 2:
       lightRed();
       break;
     case 3:
       lightBlue();
-      break;
-    case 4:
-      writeThing();
       break;
     default:
       break;
