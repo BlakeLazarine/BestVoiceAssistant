@@ -1,9 +1,5 @@
 # -*- coding: utf-8 -*-
-"""
-Created on Tue May 19 16:20:43 2020
 
-@author: benja
-"""
 import numpy as np
 from scipy.signal import find_peaks
 
