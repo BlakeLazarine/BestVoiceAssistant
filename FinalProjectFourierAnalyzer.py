@@ -41,7 +41,7 @@ def commands(data):
         if (len(commandLine) >= len(commands[x])):
             executeCommand = true
             for i in commands[x]:
-                if (!(commandLine[i] == commands[x][i])):
+                if (commandLine[i] != commands[x][i]):
                     executeCommand = false
             if (executeCommand):
                 whichCommand = x
