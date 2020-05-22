@@ -45,7 +45,7 @@ def commands(data):
         if (len(commandLine) >= len(tempList)):
             executeCommand = True
             for i in range(len(tempList)):
-                if (commandLine[i] != tempList[i]):
+                if (commandLine[len(commandLine) - i] != tempList[len(tempList(i)]):
                     executeCommand = False
             if (executeCommand):
                 whichCommand = x
