@@ -31,23 +31,30 @@ def findTone(data):
 
 #for creating commands
 def commands(data):
+    if (findTone(data) == -1):
+        return
+    dataNum = findTone(data)
     whichCommand = 0
-    commandLine.append(data)
-    for x in commands:
-        if (len(commandLine) >= len(commands[x])):
-            executeCommand = true
-            for i in commands[x]:
-                if (commandLine[i] != commands[x][i]):
-                    executeCommand = false
+    commandLine.append(dataNum)
+    for x in range(len(commandList)):
+        tempList = commandList[x]
+        if (len(commandLine) >= len(tempList)):
+            executeCommand = True
+            for i in range(len(tempList)):
+                if (commandLine[i] != tempList[i]):
+                    executeCommand = False
             if (executeCommand):
                 whichCommand = x
-            for i in commands[x]:
-                commandLine.remove(0)
+                for i in range(len(tempList)):
+                    del commandLine[0]
     if (whichCommand == 1):
+        print("Command 1")
         #command 1
     elif (whichCommand == 2):
+        print("Command 2")
         #command 2
     elif (whichCommand == 3):
+        print("Command 3")
         #command 3
         
 #A different variant of commands
