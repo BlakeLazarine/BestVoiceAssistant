@@ -16,26 +16,28 @@ def frequency_analyzer(data):
 #returns which level of frequency we are detecting
 def findTone(data):
     peakFreqs, values = find_peaks(np.abs(data), height = 14000, distance = 500)
-    bigPeak = 0.0
+    x = np.arange(len(data)) * 32500 / len(data)
+    bigPeak = 0
     peakHeights = values['peak_heights']
     for i in range (len(peakHeights)):
-        if (peakHeights[i] == max(peakHeights)):
+        if (peakHeights[i] == max(peakHeights) and 0 < x[peakFreqs[i]] < 5000):
             bigPeak = peakFreqs[i]
-    print(bigPeak)
-    if (bigPeak < 800):
+    # print("here",x[bigPeak])
+    if (x[bigPeak] < 800):
         return -1
-    elif (bigPeak < 1200):
+    elif (x[bigPeak] < 1200):
         return 0
-    elif (bigPeak > 2300):
+    elif (x[bigPeak] > 2300):
         return 2
     else:
         return 1
 
 #for creating commands
 def commands(data):
-    if (findTone(data) == -1):
-        return
     dataNum = findTone(data)
+    if (dataNum == -1):
+        return
+    print(dataNum)
     whichCommand = 0
     commandLine.append(dataNum)
     for x in range(len(commandList)):
@@ -58,33 +60,3 @@ def commands(data):
     elif (whichCommand == 3):
         print("Command 3")
         #command 3
-        
-#A different variant of commands
-def alternateCommands(data):
-    commandLine.append(data)                
-    if (len(commandLine) > 3):
-        if (commandLine[0] == 0 && commandLine[1] == 1 && commandLine[2] == 0 && commandLine[3] == 1):
-            print("Command 3") #replace with call to whatever function
-            commandLine.remove(0)
-            commandLine.remove(0)
-            commandLine.remove(0)
-            commandLine.remove(0)
-    if (len(commandLine) > 1)
-        if (commandLine[0] == 0 && commandLine[1] == 2):
-            print("Command 1") # replace with call to whatever function
-            commandLine.remove(0)
-            commandLine.remove(0)
-        elif (commandLine[0] == 1 && commandLine[2] == 2):
-            print("Command 2") # replace with call to whatever function
-            commandLine.remove(0)
-            commandLine.remove(0)
-    
-data = #put data here
-
-changed = false
-
-#continously run
-
-if (changed):
-    changed = false
-    commands(findTone(data)
