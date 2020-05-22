@@ -6,7 +6,7 @@ from scipy.signal import find_peaks
 #Filled in at beginning of commands
 commandLine = []
 #An array of arrays which are the sequences that make commands
-commands = [[0, 2], [1, 2], [0, 1, 0, 1]]
+commandList = [[0, 2], [1, 2], [0, 1, 0, 1]]
 
 def frequency_analyzer(data):    
     freq = np.arange(len(data))
@@ -22,7 +22,9 @@ def findTone(data):
         if (peakHeights[i] == max(peakHeights)):
             bigPeak = peakFreqs[i]
     print(bigPeak)
-    if (bigPeak < 1200):
+    if (bigPeak < 800):
+        return -1
+    elif (bigPeak < 1200):
         return 0
     elif (bigPeak > 2300):
         return 2
