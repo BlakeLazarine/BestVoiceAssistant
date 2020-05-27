@@ -2,12 +2,15 @@ import serial
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
+import FinalProjectFourierAnalyzer as an
+
 
 fig = plt.figure()
 ax1 = fig.add_subplot(1,1,1)
 comm_port = "COM15"
 sampleInput = serial.Serial(comm_port, 115200, timeout=5)
 buffSize = 255
+ready = True
 
 def read_one_sample(inBuf, start):
     data = sampleInput.read()
@@ -42,12 +45,18 @@ def testInput():
     print(sampleInput.readline())
 
 def animate(i):
+    global ready
+    if not ready:
+        return
+    ready = False
     ax1.clear()
     inBuff = read_n_samples(5)
     fft = np.fft.fft(inBuff)
     x = np.arange(len(inBuff)) * 32500 / len(inBuff)
     ax1.plot(x, abs(fft))
     plt.xlim(0, 5000)
+    an.commands(fft)
+    ready = True;
 
 while not sampleInput.read():
     pass;
