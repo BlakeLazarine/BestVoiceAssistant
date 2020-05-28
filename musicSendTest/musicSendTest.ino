@@ -27,7 +27,7 @@ void takeOnMe()
     //    Serial.println(val);
   }
   //  digitalWrite(7, HIGH);
-  Serial.write("here2");
+
 
   // this calculates the duration of a whole note in ms
   int wholenote = (60000 * 4) / tempo;
@@ -58,7 +58,7 @@ void takeOnMe()
     // stop the waveform generation before the next note.
     noTone(buzzer);
   }
-
+  Serial.write("here2");
 }
 
 
