@@ -55,7 +55,7 @@ def animate(i):
     x = np.arange(len(inBuff)) * 32500 / len(inBuff)
     ax1.plot(x, abs(fft))
     plt.xlim(0, 5000)
-    an.commands(fft)
+    an.commands(fft, sampleInput)
     ready = True;
 
 while not sampleInput.read():

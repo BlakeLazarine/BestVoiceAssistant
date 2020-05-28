@@ -2,6 +2,9 @@
 
 import numpy as np
 from scipy.signal import find_peaks
+import serial
+import SendSong
+
 
 # Filled in at beginning of commands
 commandLine = []
@@ -36,7 +39,7 @@ def findTone(data):
 
 
 # for creating commands
-def commands(data):
+def commands(data, ser):
     global commandLine
     dataNum = findTone(data)
     if (dataNum == -1):
@@ -54,6 +57,8 @@ def commands(data):
     if whichCommand != -1:
         #send arduino command
         commandLine = []
+        if(whichCommand == 2):
+            SendSong.playSong(ser)
     '''
     for x in range(len(commandList)):
         tempList = commandList[x]
