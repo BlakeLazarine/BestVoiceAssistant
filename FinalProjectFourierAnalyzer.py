@@ -58,7 +58,7 @@ def commands(data, ser):
         #send arduino command
         commandLine = []
         if(whichCommand == 2):
-            SendSong.playSong(ser)
+            SendSong.playSong(ser,SendSong.megalovania)
     '''
     for x in range(len(commandList)):
         tempList = commandList[x]

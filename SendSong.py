@@ -116,23 +116,13 @@ despacito = [255, 10, 277, 3, 255, 10, 247, 2, 255, 5, 247, 10, 277, 10, 255, 6,
 def playSong(ser, song):
     ser.write((str(len(song) / 2) + " ").encode('utf-8'))
     for i in range(len(song)):
-        print(song[i])
-        # rin = ser.read()
-        # while (not rin):
-        #     rin = ser.read()
-        # time.sleep(0.1)
-        # print('rin', rin)
         ser.write((str(song[i]) + " ").encode('utf-8'))
         time.sleep(0.07)
         # time.sleep(0.1)
 
-
-
-    print('here')
     mes = ser.readline()
     while not mes:
         mes = ser.readline()
-    print(mes)
 
 if __name__ == '__main__':
     comm_port = "COM15"

@@ -1,6 +1,7 @@
 import mido
 
 # Credit to Jacob Dorny for gathering all midi files used in this
+# Credit to Nathan Wachholz and Jack Pearson for the code structure used as a reference
 
 file = 'songs/Despacito3.mid'
 raw_midi = mido.MidiFile(file)
