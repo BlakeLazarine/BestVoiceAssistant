@@ -9,8 +9,9 @@ import SendSong
 # Filled in at beginning of commands
 commandLine = []
 # An array of arrays which are the sequences that make commands
-commandList = [[0, 2], [1, 2], [0, 1, 0, 1]]
 
+commandList = [[0,0],[0,1],[0,2],[1,0],[1,1],[1,2],[2,0],[2,1],[2,2]]
+songSelect = False
 
 def frequency_analyzer(data):
     freq = np.arange(len(data))
@@ -41,6 +42,7 @@ def findTone(data):
 # for creating commands
 def commands(data, ser):
     global commandLine
+    global songSelect
     dataNum = findTone(data)
     if (dataNum == -1):
         return
@@ -57,8 +59,26 @@ def commands(data, ser):
     if whichCommand != -1:
         #send arduino command
         commandLine = []
-        if(whichCommand == 2):
-            SendSong.playSong(ser,SendSong.megalovania)
+
+        if not songSelect:
+            if whichCommand == 0:
+                blue()
+            elif whichCommand == 1:
+                red()
+            elif whichCommand == 2:
+                time()
+            elif whichCommand == 3:
+                weather()
+            elif whichCommand == 4:
+                joke()
+            elif whichCommand == 5:
+                songSelect = True
+            elif whichCommand == 6:
+                lightShow()
+        else:
+            songSelect = False
+            SendSong.playSong(ser, SendSong[whichCommand])
+
     '''
     for x in range(len(commandList)):
         tempList = commandList[x]
