@@ -189,12 +189,14 @@ clocks = [330, 10, 247, 10, 208, 10, 330, 10, 247, 10, 208, 10, 330, 10, 247, 10
 songArray = [take_on_me, rickroll, cantina, megalovania, despacito, axelf, pirates, allstar, clocks]
 
 def playSong(ser, song):
+    ser.write(("4 ").encode('utf-8'))
+    ser.readall()
     ser.write((str(len(song) / 2) + " ").encode('utf-8'))
     # ser.write((258).to_bytes(2, byteorder='big', signed=True))
     # print((len(song)).to_bytes(2, byteorder='big', signed=True))
     for i in range(len(song)):
         ser.write((str(song[i]) + " ").encode('utf-8'))
-        time.sleep(0.07)
+        time.sleep(0.1)
         # time.sleep(0.05)
         # if(i%32 == 0):
         #     time.sleep(0.5)
@@ -211,4 +213,4 @@ if __name__ == '__main__':
     while(not sampleInput.read()):
         pass
     # sampleInput.write("1".encode('utf-8'));
-    playSong(sampleInput, clocks)
+    playSong(sampleInput, rickroll)

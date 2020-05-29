@@ -62,22 +62,28 @@ def commands(data, ser):
 
         if not songSelect:
             if whichCommand == 0:
-                blue()
+                # blue()
+                pass
             elif whichCommand == 1:
-                red()
+                pass
+                # red()
             elif whichCommand == 2:
-                time()
+                pass
+                # time()
             elif whichCommand == 3:
-                weather()
+                pass
+                # weather()
             elif whichCommand == 4:
-                joke()
+                pass
+                # joke()
             elif whichCommand == 5:
                 songSelect = True
             elif whichCommand == 6:
-                lightShow()
+                pass
+                # lightShow()
         else:
             songSelect = False
-            SendSong.playSong(ser, SendSong[whichCommand])
+            SendSong.playSong(ser, SendSong.songArray[whichCommand])
 
     '''
     for x in range(len(commandList)):
