@@ -58,7 +58,7 @@ void takeOnMe()
     // stop the waveform generation before the next note.
     noTone(buzzer);
   }
-  Serial.write("here2");
+  Serial.write(1);
 }
 
 

@@ -3,7 +3,7 @@ import mido
 # Credit to Jacob Dorny for gathering all midi files used in this
 # Credit to Nathan Wachholz and Jack Pearson for the code structure used as a reference
 
-file = 'songs/AxelF2.mid'
+file = 'songs/Clocks2.mid'
 raw_midi = mido.MidiFile(file)
 track = mido.merge_tracks(raw_midi.tracks)
 note_vals = [31
