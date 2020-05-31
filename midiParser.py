@@ -115,7 +115,7 @@ for msg in track:
     elif msg.type == "note_off":
         # print("off", msg.note, msg)
         if (msg.time > 1):
-            notes.append(note_vals[msg.note-23])
+            notes.append(msg.note-23)
             notes.append(int(2000/msg.time))
             t += msg.time
 

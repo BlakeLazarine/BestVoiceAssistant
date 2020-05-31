@@ -55,6 +55,14 @@ def animate(i):
     x = np.arange(len(inBuff)) * 32500 / len(inBuff)
     ax1.plot(x, abs(fft))
     plt.xlim(0, 5000)
+    ax1.axvline(x=800)
+    ax1.axvline(x=1200)
+    ax1.axvline(x=2300)
+    s = ''
+    for c in an.commandLine:
+        s += str(c)
+    plt.title(s)
+    plt.xlabel("Frequency (Hz)")
     an.commands(fft, sampleInput)
     ready = True;
 

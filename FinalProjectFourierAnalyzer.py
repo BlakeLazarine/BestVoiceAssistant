@@ -3,7 +3,7 @@
 import numpy as np
 from scipy.signal import find_peaks
 import serial
-import SendSong
+import SendSongBytes
 
 
 # Filled in at beginning of commands
@@ -83,7 +83,7 @@ def commands(data, ser):
                 # lightShow()
         else:
             songSelect = False
-            SendSong.playSong(ser, SendSong.songArray[whichCommand])
+            SendSongBytes.playSong(ser, SendSongBytes.songArray[whichCommand])
 
     '''
     for x in range(len(commandList)):

@@ -17,7 +17,9 @@ void takeOnMe()
     notes = Serial.parseInt();
   }
   int melody[notes * 2];
-  for (int i = 0; i < notes * 2; i++)
+  while(Serial.available())
+    Serial.read();
+  for (int i = 0; i < notes; i++)
   {
     //    delay(100);
     int val = Serial.parseInt();
@@ -26,6 +28,12 @@ void takeOnMe()
     }
     if (val == 255)
       val = 0;
+    melody[i] = val;
+    
+    val = Serial.parseInt();
+    while (val == 0) {
+      val = Serial.parseInt();
+    }
     melody[i] = val;
     //    digitalWrite(7, LOW);
     //    delay(1000);
