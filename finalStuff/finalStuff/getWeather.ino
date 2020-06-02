@@ -1,3 +1,5 @@
+//HARDCODED VERSION
+
 void getWeather(){
   String temperature;
   String weatherState; //If we can read stuff like "sunny, Partly cloudy, or whatever"
