@@ -49,9 +49,9 @@ def playSong(ser, song):
     print(str(mes.decode('utf-8').strip()))
 
 if __name__ == '__main__':
-    comm_port = "COM15"
+    comm_port = "COM3"
     sampleInput = serial.Serial(comm_port, 115200, timeout=5)
     while(not sampleInput.read()):
         pass
     # sampleInput.write("1".encode('utf-8'));
-    playSong(sampleInput, pirates)
+    playSong(sampleInput, megalovania)
