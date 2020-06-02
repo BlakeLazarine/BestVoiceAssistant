@@ -38,6 +38,21 @@ def findTone(data):
     else:
         return 1
 
+# sends text
+def sendText(ser, text):
+    ser.write("1 ".encode('utf-8'))
+    time.sleep(0.05)
+    if (len(text) > 64):
+        ser.write(text[0:64].encode('utf-8'))
+        time.sleep(0.1)
+        ser.write(text[64].encode('utf-8'))
+    else:
+        ser.write(text.encode('utf-8'))
+    mes = ser.readline()
+    while not mes:
+        mes = ser.readline()
+    print(mes)
+    
 
 # for creating commands
 def commands(data, ser):
@@ -71,8 +86,8 @@ def commands(data, ser):
                 pass
                 # time()
             elif whichCommand == 3:
-                pass
-                # weather()
+                sendText(ser, weatherTest.getTempFahrenheit())
+                #weather()
             elif whichCommand == 4:
                 pass
                 # joke()
