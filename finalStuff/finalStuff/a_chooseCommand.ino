@@ -1,28 +1,32 @@
+//Updated to most recent list of commands
+
 void chooseCommand(const int in)
 {
   switch(in)
   {
     case 1:
-      playMusic();
-      break;
-    case 2:
-      bitchesInTheTesla();
-      break;
-    case 3:
       turnOnTheLights();
       break;
-    case 4:
+    case 2:
       turnOffTheLights();
       break;
+    case 3:
+      getText(); //Time
+      break;
+    case 4:
+      getText(); //Weather
+      break;
     case 5:
-      getWeather();
+      sayAJoke();
       break;
     case 6:
-      lightShow();
+      playMusic();
       break;
     case 7:
+      lightShow();
       break;
     case 8:
+      bitchesInTheTesla();
       break;
     case 9:
       break;
