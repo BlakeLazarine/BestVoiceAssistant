@@ -8,14 +8,15 @@ const int BUZZERPin = 8;
 const int PWMPin = 9;
 int buffer [512];
 int bri = 225;
-const int red = 2;
-const int blue = 3;
+const int red = 11;
+const int blue = 12;
+const int green = 13;
 
 
 
 int note_vals[] = {31, 33, 35, 37, 39, 41, 44, 46, 49, 52, 55, 58, 62, 65, 69, 73, 78, 82, 87, 93, 98, 104, 110, 117, 123, 131, 139, 147, 156, 165, 175, 185, 196, 208, 220, 233, 247, 262, 277, 294, 311, 330, 349, 370, 392, 415, 440, 466, 494, 523, 554, 587, 622, 659, 698, 740, 784, 831, 880, 932, 988, 1047, 1109, 1175, 1245, 1319, 1397, 1480, 1568, 1661, 1760, 1865, 1976, 2093, 2217, 2349, 2489, 2637, 2794, 2960, 3136, 3322, 3520, 3729, 3951, 4186, 4435, 4699, 4978};
 
-void readText()
+void getText()
 {
   String text = Serial.readString();
 
@@ -40,9 +41,9 @@ void readText()
 
 void offAll()
 {
-  digitalWrite(redLedPin,LOW);
-  digitalWrite(blueLedPin,LOW);
-  digitalWrite(greenLedPin,LOW);
+  digitalWrite(red,LOW);
+  digitalWrite(blue,LOW);
+  digitalWrite(green,LOW);
 }
 
 void lightShow()
@@ -50,57 +51,57 @@ void lightShow()
   offAll();
   delay(1000);
 
-  analogWrite(redLedPin,75);
+  analogWrite(red,75);
   delay(300);
-  analogWrite(blueLedPin,125);
+  analogWrite(blue,125);
   delay(300);
-  analogWrite(greenLedPin,175);
+  analogWrite(green,175);
   delay(300);
 
   offAll();
 
   for(int i = 30; i < 225; i+=12)
   {
-    analogWrite(redLedPin,i);
+    analogWrite(red,i);
     delay(50);
-    analogWrite(redLedPin,0);
+    analogWrite(red,0);
     delay(50);
   }
     for(int i = 30; i < 225; i+=13)
   {
-    analogWrite(greenLedPin,i);
+    analogWrite(green,i);
     delay(50);
-    analogWrite(greenLedPin,0);
+    analogWrite(green,0);
     delay(50);
   }
     for(int i = 30; i < 225; i+=12)
   {
-    analogWrite(blueLedPin,i);
+    analogWrite(blue,i);
     delay(50);
-    analogWrite(blueLedPin,0);
+    analogWrite(blue,0);
     delay(50);
   }
 
   offAll();
   delay(1000);
-  analogWrite(greenLedPin,225);
-  analogWrite(redLedPin,225);
+  analogWrite(green,225);
+  analogWrite(red,225);
   delay(750);
-  analogWrite(greenLedPin,0);
-  analogWrite(blueLedPin,225);
-  analogWrite(redLedPin,225);
+  analogWrite(green,0);
+  analogWrite(blue,225);
+  analogWrite(red,225);
     delay(750);
-  analogWrite(greenLedPin,225);
-  analogWrite(blueLedPin,225);
-  analogWrite(redLedPin,0);
+  analogWrite(green,225);
+  analogWrite(blue,225);
+  analogWrite(red,0);
       delay(750);
-  analogWrite(greenLedPin,225);
-  analogWrite(blueLedPin,0);
-  analogWrite(redLedPin,225);
+  analogWrite(green,225);
+  analogWrite(blue,0);
+  analogWrite(red,225);
         delay(750);
-  analogWrite(greenLedPin,86);
-  analogWrite(blueLedPin,215);
-  analogWrite(redLedPin,70);
+  analogWrite(green,86);
+  analogWrite(blue,215);
+  analogWrite(red,70);
 
   delay(1000);
   Serial.write(0);
@@ -212,53 +213,53 @@ void recordSample(byte num) {
 
 void sayAJoke()
 {
-  //tone(buzzPin,10,100);
+  //tone(BUZZERPin,10,100);
   
   lcd.clear();
   lcd.setCursor(0,0);
   
   lcd.print("What ");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(350);
   lcd.print("did ");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(350);
   lcd.print("the ");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(350);
 
   lcd.setCursor(0,1);
   lcd.print("pirate ");
-  tone(buzzPin,1000,50);
+  tone(BUZZERPin,1000,50);
   delay(100);
-  tone(buzzPin,1000,50);
+  tone(BUZZERPin,1000,50);
   delay(250);
   lcd.print("say ");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(350);
   lcd.print("on ");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
 
   lcd.setCursor(0,0);
   lcd.print("                             ");
   lcd.setCursor(0,0);
   lcd.print("his ");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(350);
   lcd.print("80th ");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(150);
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(150);
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(300);
   lcd.setCursor(0,1);
   lcd.print("                            ");
   lcd.setCursor(0,1);
   lcd.print("birthday?");
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   delay(175);
-  tone(buzzPin,1000,100);
+  tone(BUZZERPin,1000,100);
   
   delay(2500);
   lcd.clear();
@@ -266,7 +267,7 @@ void sayAJoke()
 
   lcd.setCursor(0,0);
   lcd.print("AY M8E!");
-  tone(buzzPin,1000,300);
+  tone(BUZZERPin,1000,300);
   delay(3000);
 }
 
@@ -304,7 +305,7 @@ void loop() {
       break;
     case 3:
       //display time or weather
-      text();
+      getText();
       break;
     case 5:
       //joke
