@@ -3,8 +3,8 @@
 import numpy as np
 from scipy.signal import find_peaks
 import serial
-import SendSongBytes
-import weatherTest
+import putItAllTogether.SendSongBytes as SendSongBytes
+import putItAllTogether.weatherTest as weatherTest
 import time
 
 
@@ -31,7 +31,7 @@ def findTone(data):
         if (peakHeights[i] == max(peakHeights) and 0 < x[peakFreqs[i]] < 5000):
             bigPeak = peakFreqs[i]
     # print("here",x[bigPeak])
-    if (x[bigPeak] < 800):
+    if (x[bigPeak] < 750):
         return -1
     elif (x[bigPeak] < 1200):
         return 0
@@ -90,12 +90,15 @@ def commands(data, ser):
                 #red
             elif whichCommand == 2:
                 sendText(ser, getTime())
+                ser.readall()
                 # time()
             elif whichCommand == 3:
                 sendText(ser, weatherTest.getTempFahrenheit())
+                ser.readall()
                 #weather()
             elif whichCommand == 4:
                 ser.write("5 ".encode('utf-8'))
+                ser.readall()
                 #joke
             elif whichCommand == 5:
                 songSelect = True

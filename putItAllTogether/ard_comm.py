@@ -2,12 +2,12 @@ import serial
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.animation as animation
-import commandsFinal as an
+import putItAllTogether.commandsFinal as an
 
 
 fig = plt.figure()
 ax1 = fig.add_subplot(1,1,1)
-comm_port = "COM5"
+comm_port = "COM3"
 sampleInput = serial.Serial(comm_port, 115200, timeout=5)
 buffSize = 255
 ready = True

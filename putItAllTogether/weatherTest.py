@@ -3,11 +3,14 @@ import pyowm
 
 
 owm = pyowm.OWM('b70f1eb9ecaf7b8d7969efbd141de9bf')
-observation = owm.weather_at_place('Los Angeles')
-w = observation.get_weather()
+observation = owm.weather_manager().weather_at_place('Los Angeles')
+
+w = observation.weather
+
+
 
 def getTempCelsius(data = w):
-    q = data.get_temperature('celsius')
+    q = data.temperature('celsius')
     currentT = round(q['temp'], 2)
     highT = round(q['temp_max'], 2)
     lowT = round(q['temp_min'], 2)
@@ -15,7 +18,7 @@ def getTempCelsius(data = w):
     return weatherString
 
 def getTempFahrenheit(data = w):
-    q = data.get_temperature('fahrenheit')
+    q = data.temperature('fahrenheit')
     currentT = round(q['temp'], 2)
     highT = round(q['temp_max'], 2)
     lowT = round(q['temp_min'], 2)
